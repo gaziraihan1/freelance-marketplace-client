@@ -9,7 +9,6 @@ import { Tooltip } from "react-tooltip";
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const { logOut, user, loading } = useContext(AuthContext);
-  console.log(user);
   const handleLogout = () => {
     logOut().then(() => {
       toast.success("Logout successfull");
@@ -50,7 +49,7 @@ const Header = () => {
         {user ? (
           <>
             <li>
-              <NavLink>Profile</NavLink>
+              <Link>Profile</Link>
             </li>
             <li className="py-1 rounded-2xl border border-red-500 hover:text-gray-700">
               <button onClick={handleLogout}>Logout</button>
@@ -59,10 +58,10 @@ const Header = () => {
         ) : (
           <>
             <li className="py-1 rounded-2xl border border-gray-500 hover:text-gray-700">
-              <NavLink to="/auth/login">Login</NavLink>
+              <Link to="/auth/login">Login</Link>
             </li>
             <li className="py-1 rounded-2xl border border-gray-500 hover:text-gray-700">
-              <NavLink to="/auth/signup">Signup</NavLink>
+              <Link to="/auth/signup">Signup</Link>
             </li>
           </>
         )}
@@ -83,7 +82,7 @@ const Header = () => {
       </ul>
       <div className="hidden lg:block">
         {loading ? (
-          <Loading />
+          <span className="loading loading-spinner loading-sm lg:loading-xl"></span>
         ) : user ? (
           <div className="flex gap-2">
             <div>
