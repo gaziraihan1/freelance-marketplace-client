@@ -8,7 +8,6 @@ import MyPostedTask from "../pages/MyPostedTask";
 import AuthLayout from "../auth-layout/AuthLayout";
 import Signup from "../auth-layout/Signup";
 import Login from "../auth-layout/Login";
-import ResetPassword from "../auth-layout/ResetPassword";
 import TaskDetails from "../components/TaskDetails";
 
 
@@ -56,11 +55,7 @@ export const router = createBrowserRouter([
       {
         path: "/auth/login",
         Component: Login,
-      },
-      {
-        path: "/auth/reset-password",
-        Component: ResetPassword,
-      },
+      }
     ],
   },
 ])
