@@ -1,41 +1,50 @@
 import React, { useContext, useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
+import { useLoaderData } from "react-router";
 import { AuthContext } from "../Auth-context/AuthProvider";
+import DatePicker from "react-datepicker";
 import { toast, ToastContainer } from "react-toastify";
 
-const AddTask = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [category, setCategory] = useState();
+const UpdateTask = () => {
   const { user } = useContext(AuthContext);
+  const data = useLoaderData();
+  const [deadline, setDeadline] = useState(data?.deadline);
+  const [budget, setBudget] = useState(data?.budget);
+  const [category, setCategory] = useState(data?.category);
+  const [title, setTitle] = useState(data?.title);
+  const [description, setDescription] = useState(data?.description);
 
-  const handleAddTask = (e) => {
+//   console.log(title, selectedDate, category);
+
+  const handleUpdateTask = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-    data.deadline = selectedDate;
-    console.log(data, data.deadline);
+    const updatedData = {
+        title,
+        deadline,
+        budget,
+        category,
+        description
+    }
 
-    fetch("http://localhost:5500/freelance", {
-      method: "POST",
+    fetch(`http://localhost:5500/freelance/${data._id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(updatedData),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
-          toast.success("Task added successfully");
-        }
+        if(data.modifiedCount){
+            toast.success('Task updated successfull')
+        };
+      })
+      .catch(() => {
+        toast.error('Data did not updated')
       });
   };
   return (
-    <div className="min-h-[90vh] flex justify-center items-center">
-      <form className="w-full" onSubmit={handleAddTask}>
+    <div className="min-h-[90vh] flex justify-center items-center py-8">
+      <form className="w-full" onSubmit={handleUpdateTask}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
             <label className="label">Task Title</label>
@@ -44,6 +53,8 @@ const AddTask = () => {
               name="title"
               className="input w-full"
               placeholder="Task Title"
+              defaultValue={data.title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
@@ -51,6 +62,7 @@ const AddTask = () => {
             <select
               name="category"
               onChange={(e) => setCategory(e.target.value)}
+              defaultValue={category}
               className="select select-bordered w-full"
             >
               <option value="web development">Web Development</option>
@@ -64,6 +76,8 @@ const AddTask = () => {
             <input
               type="text"
               name="description"
+              defaultValue={description}
+              onChange={(e) => setDescription(e.target.value)}
               className="input w-full"
               placeholder="What needs to be done"
             />
@@ -71,9 +85,10 @@ const AddTask = () => {
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
             <label className="label">Deadline</label>
             <DatePicker
-              selected={selectedDate}
+              value={deadline}
+              selected={deadline}
               onChange={(date) =>
-                setSelectedDate(date.toLocaleDateString("en-CA"))
+                setDeadline(date.toLocaleDateString("en-CA"))
               }
               className="input w-full"
               placeholderText="Select a date"
@@ -88,6 +103,8 @@ const AddTask = () => {
               name="budget"
               className="input w-full"
               placeholder="Budget"
+              defaultValue={budget}
+              onChange={e => setBudget(e.target.value)}
             />
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
@@ -114,11 +131,11 @@ const AddTask = () => {
           />
         </fieldset>
 
-        <input type="submit" className="btn w-full" value="Add Task" />
+        <input type="submit" className="btn w-full" value="Update Task" />
         <ToastContainer />
       </form>
     </div>
   );
 };
 
-export default AddTask;
+export default UpdateTask;

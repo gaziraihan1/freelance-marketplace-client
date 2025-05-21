@@ -9,6 +9,7 @@ import AuthLayout from "../auth-layout/AuthLayout";
 import Signup from "../auth-layout/Signup";
 import Login from "../auth-layout/Login";
 import TaskDetails from "../components/TaskDetails";
+import UpdateTask from "../pages/UpdateTask";
 
 
 export const router = createBrowserRouter([
@@ -34,6 +35,13 @@ export const router = createBrowserRouter([
                 path: '/my-posted-task',
                 element: <PrivateRoute>
                     <MyPostedTask />
+                </PrivateRoute>
+            },
+            {
+                path: '/update-task/:id',
+                loader: ({params}) => fetch(`http://localhost:5500/freelance/${params.id}`),
+                element: <PrivateRoute>
+                    <UpdateTask />
                 </PrivateRoute>
             },
             {
