@@ -81,7 +81,7 @@ const Header = () => {
           </>
         )}
       </ul>
-      <ul className="hidden lg:flex gap-6 xl:gap-8 2xl:gap-12 ">
+      <ul className="hidden lg:flex gap-6 xl:gap-8 2xl:gap-12 text-lg font-medium text-gray-600">
         <li>
           <NavLink to={"/"}>Home</NavLink>
         </li>

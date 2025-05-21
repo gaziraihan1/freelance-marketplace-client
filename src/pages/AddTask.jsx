@@ -19,10 +19,10 @@ const AddTask = () => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    // Fix: ensure selectedDate is a Date object
     data.deadline = selectedDate
       ? new Date(selectedDate).toISOString().split("T")[0]
       : null;
+
 
     fetch("https://server-side-a10-blue.vercel.app/freelance", {
       method: "POST",
