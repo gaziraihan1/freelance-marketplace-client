@@ -34,6 +34,23 @@ const Header = () => {
           menu ? "top-16 right-2" : "hidden"
         } lg:hidden text-center z-10`}
       >
+        {
+          user? <li className="flex justify-center items-center">
+              <div>
+              <a
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content={user.displayName}
+              >
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={user.photoURL}
+                  alt="User"
+                />
+              </a>
+              <Tooltip id="my-tooltip" />
+            </div>
+            </li>: ''
+        }
         <li>
           <NavLink to={"/"}>Home</NavLink>
         </li>
@@ -48,9 +65,7 @@ const Header = () => {
         </li>
         {user ? (
           <>
-            <li>
-              <Link>Profile</Link>
-            </li>
+            
             <li className="py-1 rounded-2xl border border-red-500 hover:text-gray-700">
               <button onClick={handleLogout}>Logout</button>
             </li>
