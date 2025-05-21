@@ -5,6 +5,7 @@ import { BiData } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link,  } from 'react-router';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const MyPostedTask = () => {
     const [postedTask, setPostedTask]= useState([]);
@@ -19,20 +20,40 @@ const MyPostedTask = () => {
         }
     }, [user]);
 
-    const handleDeleteTask = id => {
-        fetch(`http://localhost:5500/freelance/${id}`, {
-            method: 'DELETE'
-        })
-        .then(res => res.json())
-        .then(data => 
-        {
-            const remainingTask = postedTask.filter(task => task._id !== id);
-            setPostedTask(remainingTask)
-            if(data.deletedCount) {
-                toast.success('Data deletion successfull')
+    const handleDeleteTask = (id) => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            console.log(result.isConfirmed)
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5500/freelance/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Coffee has been deleted.",
+                                icon: "success"
+                            });
+
+                            const remainingTask = postedTask.filter(task => task._id !== id);
+                            setPostedTask(remainingTask);
+                        }
+                    })
+
+
             }
-        }
-        )
+        });
+
     }
     return (
         <div className='max-w-3xl mx-auto mt-2 md:mt-8 lg:mt-12'>
