@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Auth-context/AuthProvider';
-import { MdOutlineModeEditOutline } from "react-icons/md";
+import { MdOutlineArrowOutward, MdOutlineModeEditOutline } from "react-icons/md";
 import { BiData } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
-import { Link } from 'react-router';
+import { Link,  } from 'react-router';
 import { toast } from 'react-toastify';
 
 const MyPostedTask = () => {
     const [postedTask, setPostedTask]= useState([]);
     const {user} = useContext(AuthContext);
+
 
     useEffect(() => {
         if(user?.email){
@@ -35,7 +36,26 @@ const MyPostedTask = () => {
     }
     return (
         <div className='max-w-3xl mx-auto mt-2 md:mt-8 lg:mt-12'>
-            <div className="overflow-x-auto">
+            {
+                postedTask.length <=0 ? <div className='min-h-[70vh] flex justify-center items-center'>
+                    <div className='text-center'>
+                        <h2 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-gray-800'>
+                            ⚠️You didn't add any task yet
+                        </h2>
+                        <p className='text-gray-700 font-medium mt-2 md:mt-4'>
+                            Please add task to see your Posted Task here
+                        </p>
+                        <p className='text-gray-800 mt-1 md:mt-2'>
+                            For adding task go <button><Link to={'/add-task'} className='flex items-center text-blue-700 hover:text-blue-500 transition hover:underline'>Here<MdOutlineArrowOutward /></Link></button>
+                        </p>
+                        <h4 className='mt-1 md:mt-2 text-base font-medium'>
+                            Or
+                        </h4>
+                        <p className='text-gray-800 mt-1 md:mt-2'>
+                            Browse task <button><Link className='flex items-center text-blue-700 hover:text-blue-500 transition hover:underline' to={'/browse-task'}>Here<MdOutlineArrowOutward /></Link></button>
+                        </p>
+                    </div>
+                </div>:<div className="overflow-x-auto">
   <table className="table">
     <thead>
       <tr className='border-b border-gray-300'>
@@ -71,6 +91,7 @@ const MyPostedTask = () => {
     </tbody>
   </table>
 </div>
+            }
         </div>
     );
 };
