@@ -4,7 +4,6 @@ import { MdOutlineArrowOutward, MdOutlineModeEditOutline } from "react-icons/md"
 import { BiData } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link,  } from 'react-router';
-import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
 const MyPostedTask = () => {
@@ -18,6 +17,7 @@ const MyPostedTask = () => {
             .then(res => res.json())
             .then(data => setPostedTask(data))
         }
+        document.title = 'Freelance Task MP | My Post'
     }, [user]);
 
     const handleDeleteTask = (id) => {
@@ -31,7 +31,6 @@ const MyPostedTask = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
-            console.log(result.isConfirmed)
             if (result.isConfirmed) {
                 fetch(`http://localhost:5500/freelance/${id}`, {
                     method: 'DELETE'
@@ -58,7 +57,7 @@ const MyPostedTask = () => {
     return (
         <div className='max-w-3xl mx-auto mt-2 md:mt-8 lg:mt-12'>
             {
-                postedTask.length <=0 ? <div className='min-h-[70vh] flex justify-center items-center'>
+                postedTask.length <0 ? <div className='min-h-[70vh] flex justify-center items-center'>
                     <div className='text-center'>
                         <h2 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-gray-800'>
                             ⚠️You didn't add any task yet
@@ -90,8 +89,8 @@ const MyPostedTask = () => {
         postedTask.map((task, index) => 
                 <tr className='border-b  border-gray-300' key={index}>
                     
-        <td>{task.title}</td>
-        <td>{task.budget}</td>
+        <td className='font-medium'>{task.title}</td>
+        <td>${task.budget}</td>
         <td>{task.category}</td>
         <td className='flex flex-col gap-2 md:gap-3'>
             <Link to={`/update-task/${task._id}`}  className='cursor-pointer'>

@@ -1,10 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../Auth-context/AuthProvider";
 import DatePicker from "react-datepicker";
 import { toast, ToastContainer } from "react-toastify";
 
 const UpdateTask = () => {
+    useEffect(() => {
+            document.title = 'Freelance Task MP | Update task'
+        })
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const [deadline, setDeadline] = useState(data?.deadline);
@@ -13,7 +16,6 @@ const UpdateTask = () => {
   const [title, setTitle] = useState(data?.title);
   const [description, setDescription] = useState(data?.description);
 
-//   console.log(title, selectedDate, category);
 
   const handleUpdateTask = (e) => {
     e.preventDefault();

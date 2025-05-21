@@ -8,8 +8,8 @@ import MyPostedTask from "../pages/MyPostedTask";
 import AuthLayout from "../auth-layout/AuthLayout";
 import Signup from "../auth-layout/Signup";
 import Login from "../auth-layout/Login";
-import TaskDetails from "../components/TaskDetails";
 import UpdateTask from "../pages/UpdateTask";
+import TaskDetails from "../pages/TaskDetails";
 
 
 export const router = createBrowserRouter([
@@ -29,6 +29,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/browse-task',
+                loader:() => fetch('http://localhost:5500/freelance'),
                 element: <BrowseTask/>,
             },
             {
@@ -48,7 +49,8 @@ export const router = createBrowserRouter([
                 path: '/task-details/:id',
                 element: <PrivateRoute>
                     <TaskDetails />
-                </PrivateRoute>
+                </PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5500/freelance/${params.id}`)
             }
         ]
     },

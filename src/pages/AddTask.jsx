@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -6,33 +6,37 @@ import { AuthContext } from "../Auth-context/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 
 const AddTask = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState();
   const [category, setCategory] = useState();
-  const { user } = useContext(AuthContext);
+  const { user} = useContext(AuthContext);
 
-  const handleAddTask = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-    data.deadline = selectedDate;
-    console.log(data, data.deadline);
+  useEffect(() => {
+          document.title = 'Freelance Task MP | Add Task'
+      })
+  const handleAddTask = e => {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
 
-    fetch("http://localhost:5500/freelance", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
-          toast.success("Task added successfully");
-        }
-      });
-  };
+  // Fix: ensure selectedDate is a Date object
+  data.deadline = selectedDate ? new Date(selectedDate).toISOString().split("T")[0] : null;
+
+  fetch('http://localhost:5500/freelance', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.insertedId) {
+      toast.success('Task added successfully');
+    }
+  });
+};
+
   return (
     <div className="min-h-[90vh] flex justify-center items-center">
       <form className="w-full" onSubmit={handleAddTask}>
@@ -44,6 +48,7 @@ const AddTask = () => {
               name="title"
               className="input w-full"
               placeholder="Task Title"
+              required
             />
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
@@ -51,6 +56,7 @@ const AddTask = () => {
             <select
               name="category"
               onChange={(e) => setCategory(e.target.value)}
+              required
               className="select select-bordered w-full"
             >
               <option value="web development">Web Development</option>
@@ -66,15 +72,14 @@ const AddTask = () => {
               name="description"
               className="input w-full"
               placeholder="What needs to be done"
+              required
             />
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
             <label className="label">Deadline</label>
             <DatePicker
               selected={selectedDate}
-              onChange={(date) =>
-                setSelectedDate(date.toLocaleDateString("en-CA"))
-              }
+              onChange={(date) => setSelectedDate(date.toLocaleDateString("en-CA"))}
               className="input w-full"
               placeholderText="Select a date"
               dateFormat="yyyy-MM-dd"
@@ -88,6 +93,7 @@ const AddTask = () => {
               name="budget"
               className="input w-full"
               placeholder="Budget"
+              required
             />
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
@@ -106,7 +112,7 @@ const AddTask = () => {
           <label className="label">User Name</label>
           <input
             type="text"
-            value={user.displayName || ""}
+            value={user.displayName|| ''}
             name="userName"
             className="input w-full"
             placeholder="User Name"
