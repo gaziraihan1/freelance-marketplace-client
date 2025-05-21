@@ -5,9 +5,9 @@ import DatePicker from "react-datepicker";
 import { toast, ToastContainer } from "react-toastify";
 
 const UpdateTask = () => {
-    useEffect(() => {
-            document.title = 'Freelance Task MP | Update task'
-        })
+  useEffect(() => {
+    document.title = "Freelance Task MP | Update task";
+  });
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const [deadline, setDeadline] = useState(data?.deadline);
@@ -16,18 +16,17 @@ const UpdateTask = () => {
   const [title, setTitle] = useState(data?.title);
   const [description, setDescription] = useState(data?.description);
 
-
   const handleUpdateTask = (e) => {
     e.preventDefault();
     const updatedData = {
-        title,
-        deadline,
-        budget,
-        category,
-        description
-    }
+      title,
+      deadline,
+      budget,
+      category,
+      description,
+    };
 
-    fetch(`http://localhost:5500/freelance/${data._id}`, {
+    fetch(`https://server-side-a10-blue.vercel.app/freelance/${data._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -36,12 +35,12 @@ const UpdateTask = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.modifiedCount){
-            toast.success('Task updated successfull')
-        };
+        if (data.modifiedCount) {
+          toast.success("Task updated successfull");
+        }
       })
       .catch(() => {
-        toast.error('Data did not updated')
+        toast.error("Data did not updated");
       });
   };
   return (
@@ -89,9 +88,7 @@ const UpdateTask = () => {
             <DatePicker
               value={deadline}
               selected={deadline}
-              onChange={(date) =>
-                setDeadline(date.toLocaleDateString("en-CA"))
-              }
+              onChange={(date) => setDeadline(date.toLocaleDateString("en-CA"))}
               className="input w-full"
               placeholderText="Select a date"
               dateFormat="yyyy-MM-dd"
@@ -106,7 +103,7 @@ const UpdateTask = () => {
               className="input w-full"
               placeholder="Budget"
               defaultValue={budget}
-              onChange={e => setBudget(e.target.value)}
+              onChange={(e) => setBudget(e.target.value)}
             />
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">

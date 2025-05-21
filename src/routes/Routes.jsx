@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/browse-task',
-                loader:() => fetch('http://localhost:5500/freelance'),
+                loader:() => fetch('https://server-side-a10-blue.vercel.app/freelance'),
                 element: <BrowseTask/>,
             },
             {
@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/update-task/:id',
-                loader: ({params}) => fetch(`http://localhost:5500/freelance/${params.id}`),
+                loader: ({params}) => fetch(`https://server-side-a10-blue.vercel.app/freelance/${params.id}`),
                 element: <PrivateRoute>
                     <UpdateTask />
                 </PrivateRoute>
@@ -50,7 +50,7 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <TaskDetails />
                 </PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5500/freelance/${params.id}`)
+                loader: ({params}) => fetch(`https://server-side-a10-blue.vercel.app/freelance/${params.id}`)
             }
         ]
     },

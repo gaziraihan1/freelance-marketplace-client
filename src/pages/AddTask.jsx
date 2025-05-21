@@ -8,34 +8,36 @@ import { toast, ToastContainer } from "react-toastify";
 const AddTask = () => {
   const [selectedDate, setSelectedDate] = useState();
   const [category, setCategory] = useState();
-  const { user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-          document.title = 'Freelance Task MP | Add Task'
-      })
-  const handleAddTask = e => {
-  e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
-
-  // Fix: ensure selectedDate is a Date object
-  data.deadline = selectedDate ? new Date(selectedDate).toISOString().split("T")[0] : null;
-
-  fetch('http://localhost:5500/freelance', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.insertedId) {
-      toast.success('Task added successfully');
-    }
+    document.title = "Freelance Task MP | Add Task";
   });
-};
+  const handleAddTask = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    // Fix: ensure selectedDate is a Date object
+    data.deadline = selectedDate
+      ? new Date(selectedDate).toISOString().split("T")[0]
+      : null;
+
+    fetch("https://server-side-a10-blue.vercel.app/freelance", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success("Task added successfully");
+        }
+      });
+  };
 
   return (
     <div className="min-h-[90vh] flex justify-center items-center">
@@ -79,7 +81,9 @@ const AddTask = () => {
             <label className="label">Deadline</label>
             <DatePicker
               selected={selectedDate}
-              onChange={(date) => setSelectedDate(date.toLocaleDateString("en-CA"))}
+              onChange={(date) =>
+                setSelectedDate(date.toLocaleDateString("en-CA"))
+              }
               className="input w-full"
               placeholderText="Select a date"
               dateFormat="yyyy-MM-dd"
@@ -112,7 +116,7 @@ const AddTask = () => {
           <label className="label">User Name</label>
           <input
             type="text"
-            value={user.displayName|| ''}
+            value={user.displayName || ""}
             name="userName"
             className="input w-full"
             placeholder="User Name"
