@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1",
+    "reviewerType": "freelancer",
+    "reviewerName": "Alice Johnson",
+    "reviewerProfilePic": "https://example.com/profiles/alice.jpg",
+    "revieweeType": "buyer",
+    "revieweeName": "TechCorp Ltd.",
+    "rating": 5,
+    "comment": "Great client to work with! Clear instructions and timely payments.",
+    "date": "2025-04-15"
+  },
+  {
+    "id": "2",
+    "reviewerType": "buyer",
+    "reviewerName": "Michael Smith",
+    "reviewerProfilePic": "https://example.com/profiles/michael.jpg",
+    "revieweeType": "freelancer",
+    "revieweeName": "John Doe",
+    "rating": 4,
+    "comment": "Delivered high-quality work on time, very professional.",
+    "date": "2025-04-10"
+  },
+  {
+    "id": "3",
+    "reviewerType": "freelancer",
+    "reviewerName": "Emma Davis",
+    "reviewerProfilePic": "https://example.com/profiles/emma.jpg",
+    "revieweeType": "buyer",
+    "revieweeName": "Startup Inc.",
+    "rating": 3,
+    "comment": "Communication could be improved but overall a fair client.",
+    "date": "2025-03-30"
+  },
+  {
+    "id": "4",
+    "reviewerType": "buyer",
+    "reviewerName": "Sophia Lee",
+    "reviewerProfilePic": "https://example.com/profiles/sophia.jpg",
+    "revieweeType": "freelancer",
+    "revieweeName": "Liam Brown",
+    "rating": 5,
+    "comment": "Exceptional creativity and met all deadlines perfectly!",
+    "date": "2025-05-01"
+  },
+  {
+    "id": "5",
+    "reviewerType": "freelancer",
+    "reviewerName": "David Wilson",
+    "reviewerProfilePic": "https://example.com/profiles/david.jpg",
+    "revieweeType": "buyer",
+    "revieweeName": "Global Solutions",
+    "rating": 4,
+    "comment": "Good client, quick responses, would work with again.",
+    "date": "2025-04-20"
+  },
+  {
+    "id": "6",
+    "reviewerType": "buyer",
+    "reviewerName": "Olivia Martinez",
+    "reviewerProfilePic": "https://example.com/profiles/olivia.jpg",
+    "revieweeType": "freelancer",
+    "revieweeName": "Noah Clark",
+    "rating": 2,
+    "comment": "Work was late and not up to the expected standard.",
+    "date": "2025-04-05"
+  }
+]
