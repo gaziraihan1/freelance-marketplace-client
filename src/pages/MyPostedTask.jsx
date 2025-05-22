@@ -9,10 +9,11 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
+import Loading from "../components/Loading";
 
 const MyPostedTask = () => {
   const [postedTask, setPostedTask] = useState([]);
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
   useEffect(() => {
     if (user?.email) {
@@ -68,7 +69,7 @@ const MyPostedTask = () => {
   };
   return (
     <div className="max-w-3xl mx-auto mt-2 md:mt-8 lg:mt-12 bg-gray-50 rounded">
-      {postedTask.length < 1 ? (
+      {loading ? <Loading />: postedTask.length < 0 ? (
         <div className="min-h-[70vh] flex justify-center items-center text-gray-800 rounded">
           <div className="text-center">
             <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-gray-800">
