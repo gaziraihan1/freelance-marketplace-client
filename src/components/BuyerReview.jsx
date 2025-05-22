@@ -18,7 +18,7 @@ const BuyerReview = () => {
         .then(data => setReviews(data))
     }, []);
     return (
-        <div className='my-8 md:my-12 lg:my-18 '>
+        <div className='my-8 md:my-12 lg:my-18 bg-gray-50 px-3 py-6 rounded'>
             <h1 className='sm:col-span-2 md:col-span-3 xl:col-span-4 my-3 md:my-6 xl:my-12 text-xl text-center md:text-2xl xl:text-4xl font-semibold text-gray-700 '>
                 Reviews
             </h1>

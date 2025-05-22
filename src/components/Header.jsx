@@ -15,12 +15,23 @@ const Header = () => {
     });
   };
 
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    setTheme(newTheme);
+  };
+
   return (
     <nav className="flex justify-between lg:w-11/12 mx-auto 2xl:w-10/12 items-center">
-      <div>
-        <h2 className="text-xl font-bold lg:text-3xl">
+      <div className="flex items-center gap-2">
+        <h2 className="text-xl font-bold lg:text-3xl text-gray-900" >
           Task<span className="text-gray-600">MP</span>
         </h2>
+        <button className="btn btn-outline btn-sm bg-gray-200 text-gray-700" onClick={toggleTheme}>
+      {theme === "light" ? "🌙 Dark " : "☀️ Light "}
+    </button>
       </div>
       <div className="lg:hidden" onClick={() => setMenu(!menu)}>
         {menu ? (
@@ -30,7 +41,7 @@ const Header = () => {
         )}
       </div>
       <ul
-        className={`flex bg-slate-300 flex-col gap-4 absolute p-6 rounded-lg ${
+        className={`flex bg-slate-300 text-gray-600 flex-col gap-4 absolute p-6 rounded-lg ${
           menu ? "top-16 right-2" : "hidden"
         } lg:hidden text-center z-10`}
       >
@@ -114,7 +125,7 @@ const Header = () => {
               <Tooltip id="my-tooltip" />
             </div>
             <button
-              className="py-1 px-7 border rounded-4xl cursor-pointer"
+              className="py-1 px-7 border rounded-4xl cursor-pointer text-gray-900"
               onClick={handleLogout}
             >
               Logout

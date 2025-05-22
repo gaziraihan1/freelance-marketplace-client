@@ -88,7 +88,9 @@ const UpdateTask = () => {
             <DatePicker
               value={deadline}
               selected={deadline}
-              onChange={(date) => setDeadline(date.toLocaleDateString("en-CA"))}
+              onChange={(date) => setDeadline(date
+                // .toLocaleDateString("en-CA")
+              )}
               className="input w-full"
               placeholderText="Select a date"
               dateFormat="yyyy-MM-dd"

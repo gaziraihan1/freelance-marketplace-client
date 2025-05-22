@@ -67,9 +67,9 @@ const MyPostedTask = () => {
     });
   };
   return (
-    <div className="max-w-3xl mx-auto mt-2 md:mt-8 lg:mt-12">
-      {postedTask.length < 0 ? (
-        <div className="min-h-[70vh] flex justify-center items-center">
+    <div className="max-w-3xl mx-auto mt-2 md:mt-8 lg:mt-12 bg-gray-50 rounded">
+      {postedTask.length < 1 ? (
+        <div className="min-h-[70vh] flex justify-center items-center text-gray-800 rounded">
           <div className="text-center">
             <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-gray-800">
               ⚠️You didn't add any task yet
@@ -105,9 +105,9 @@ const MyPostedTask = () => {
           </div>
         </div>
       ) : (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto text-gray-700">
           <table className="table">
-            <thead>
+            <thead className="text-gray-800">
               <tr className="border-b border-gray-300">
                 <th>Ttile</th>
                 <th>Budget</th>
