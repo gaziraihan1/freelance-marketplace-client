@@ -16,7 +16,7 @@ const FeaturedTask = () => {
                 Featured Task
             </h1>
             {
-                featureTask.map(task => <div className='border px-2 py-4 max-w-md flex flex-col justify-between rounded border-gray-300' key={task._id}>
+                featureTask.map(task => <div className='w-full border hover:border-2 px-2 py-4  flex flex-col justify-between rounded border-gray-200 transition hover:shadow-2xl ' key={task._id}>
                 <h2 className={`${task.category === 'web development'?'text-green-800':'text-gray-800'} text-lg lg:text-2xl font-semibold`}>
                   {task.title}
                 </h2>

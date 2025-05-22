@@ -1,21 +1,23 @@
-import React, { useEffect, } from 'react';
+import React, { useContext, useEffect, } from 'react';
 import { MdOutlineArrowOutward } from 'react-icons/md';
 import { Link, Outlet, useLoaderData } from 'react-router';
+import { AuthContext } from '../Auth-context/AuthProvider';
+import Loading from '../components/Loading';
 
 const BrowseTask = () => {
      useEffect(() => {
         document.title = "Freelance task MP | Browse Task"
       })
 
+      const {loading} = useContext(AuthContext);
       const allData = useLoaderData()
-      console.log(allData)
       
 
 
     return (
         <div className='mt-4 md:mt-8 lg:mt-12 flex justify-center items-center min-h-[80vh]'>
           {
-            allData.length <= 0 ? <div>
+            loading ? <Loading />: allData.length <= 0 ? <div>
               <h2 className='text-xl md:text-2xl lg:text-3xl text-center font-bold'>
                 ⚠️Currently there is no task for Browse
               </h2>

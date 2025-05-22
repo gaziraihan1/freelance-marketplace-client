@@ -22,9 +22,9 @@ const Hire = () => {
                     </div>
                 </div>
                 <div className='flex flex-col md:flex-row-reverse items-center mt-6 gap-2 lg:gap-6'>
-                    <div className='flex flex-col justify-end items-center'>
+                    <div>
                         <h1 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-gray-800'>
-                            Do Work, Get Paid, Fully <span>Secured</span>
+                            Do Work, Get Paid, Fully <span className='text-yellow-600'>Secured</span>
                         </h1>
                         <p className='mt-2 md:mt-4 lg:mt-6 2xl:mt-8 md:text-lg lg:text-xl xl:text-2xl text-gray-700'>
                             We ensure you for Secured Payment system, your hard work your Money.
@@ -32,7 +32,7 @@ const Hire = () => {
                     </div>
                     <div className='flex-1'>
 
-                    <img src="/Online transactions-bro.png" alt="" className='h-[200px] md:h-[280px] lg:h-full object-cover'/>
+                    <img src="/Online transactions-bro.png" alt="" className='h-[220px]  md:h-[300px] md:min-w-80 lg:h-full object-cover'/>
                     </div>
                 </div>
             </div>
