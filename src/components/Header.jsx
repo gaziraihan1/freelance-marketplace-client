@@ -9,6 +9,7 @@ import { Tooltip } from "react-tooltip";
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const { logOut, user, loading } = useContext(AuthContext);
+  console.log(user.photoURL)
   const handleLogout = () => {
     logOut().then(() => {
       toast.success("Logout successfull");

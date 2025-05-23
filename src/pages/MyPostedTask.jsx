@@ -119,7 +119,7 @@ const MyPostedTask = () => {
               {postedTask.map((task, index) => (
                 <tr className="border-b  border-gray-300" key={index}>
                   <td className="font-medium">{task.title}</td>
-                  <td>${task.budget}</td>
+                  <td className="text-gray-500">${task.budget}</td>
                   <td>{task.category}</td>
                   <td className="flex flex-col gap-2 md:gap-3">
                     <Link

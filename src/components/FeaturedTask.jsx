@@ -31,7 +31,7 @@ const FeaturedTask = () => {
                   Budget: ${task.budget}
                 </p>
                 <p className='text-gray-700'>
-                  {task.deadline}
+                  {new Date(task.deadline).toISOString().split("T")[0]}
                 </p>
                 </div>
                 <Link to={`/task-details/${task._id}`}  className='mt-5 flex items-center border justify-center rounded-4xl cursor-pointer w-full py-2 px-4 text-gray-800'>
