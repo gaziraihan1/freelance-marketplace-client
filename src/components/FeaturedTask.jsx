@@ -16,7 +16,11 @@ const FeaturedTask = () => {
                 Featured Task
             </h1>
             {
-                featureTask.map(task => <div className='w-full border hover:border-2 px-2 py-4  flex flex-col justify-between rounded border-gray-200 transition hover:shadow-2xl ' key={task._id}>
+                featureTask <= 0? <div className='col-span-full text-red-500'>
+                  <p className='text-lg md:text-2xl xl:text-3xl text-center font-semibold'>
+                    There is no task available for featured
+                  </p>
+                </div>: featureTask.map(task => <div className='w-full border hover:border-2 px-2 py-4  flex flex-col justify-between rounded border-gray-200 transition hover:shadow-2xl ' key={task._id}>
                 <h2 className={`${task.category === 'web development'?'text-green-800':'text-gray-800'} text-lg lg:text-2xl font-semibold`}>
                   {task.title}
                 </h2>

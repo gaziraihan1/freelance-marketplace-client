@@ -1,6 +1,6 @@
 import { AlignRight, X } from "lucide-react";
 import React, { useContext, useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Auth-context/AuthProvider";
 import { toast } from "react-toastify";
 import Loading from "./Loading";
@@ -9,10 +9,11 @@ import { Tooltip } from "react-tooltip";
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const { logOut, user, loading } = useContext(AuthContext);
-  console.log(user.photoURL)
+  const navigate = useNavigate();
   const handleLogout = () => {
     logOut().then(() => {
       toast.success("Logout successfull");
+      navigate('/')
     });
   };
 
@@ -47,7 +48,7 @@ const Header = () => {
         } lg:hidden text-center z-10`}
       >
         {
-          user? <li className="flex justify-center items-center">
+          user && <li className="flex justify-center items-center">
               <div>
               <a
                 data-tooltip-id="my-tooltip"
@@ -61,7 +62,7 @@ const Header = () => {
               </a>
               <Tooltip id="my-tooltip" />
             </div>
-            </li>: ''
+            </li> 
         }
         <li>
           <NavLink to={"/"}>Home</NavLink>

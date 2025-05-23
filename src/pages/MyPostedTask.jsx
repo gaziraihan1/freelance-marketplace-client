@@ -54,7 +54,7 @@ const MyPostedTask = () => {
             if (data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your Coffee has been deleted.",
+                text: "Your Task has been deleted.",
                 icon: "success",
               });
 

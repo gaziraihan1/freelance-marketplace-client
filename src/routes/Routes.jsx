@@ -10,6 +10,7 @@ import Signup from "../auth-layout/Signup";
 import Login from "../auth-layout/Login";
 import UpdateTask from "../pages/UpdateTask";
 import TaskDetails from "../pages/TaskDetails";
+import ErrorPage from "../pages/ErrorPage";
 
 
 export const router = createBrowserRouter([
@@ -68,4 +69,8 @@ export const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: "*",
+    Component: ErrorPage
+  }
 ])
