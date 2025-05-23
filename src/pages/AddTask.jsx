@@ -24,7 +24,6 @@ const AddTask = () => {
       .toISOString().split("T")[0]
       : null;
 
-      console.log(data.deadline)
 
     fetch("https://server-side-a10-blue.vercel.app/freelance", {
       method: "POST",
