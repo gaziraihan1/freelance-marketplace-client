@@ -12,50 +12,64 @@ import UpdateTask from "../pages/UpdateTask";
 import TaskDetails from "../pages/TaskDetails";
 import ErrorPage from "../pages/ErrorPage";
 
-
 export const router = createBrowserRouter([
-    {
-        path: '/',
-        Component: MainLayout,
-        children: [
-            {
-                index: true,
-                Component: Home
-            },
-            {
-                path: '/add-task',
-                element: <PrivateRoute>
-                    <AddTask />
-                </PrivateRoute>
-            },
-            {
-                path: '/browse-task',
-                loader:() => fetch('https://server-side-a10-blue.vercel.app/freelance'),
-                element: <BrowseTask/>,
-            },
-            {
-                path: '/my-posted-task',
-                element: <PrivateRoute>
-                    <MyPostedTask />
-                </PrivateRoute>
-            },
-            {
-                path: '/update-task/:id',
-                loader: ({params}) => fetch(`https://server-side-a10-blue.vercel.app/freelance/${params.id}`),
-                element: <PrivateRoute>
-                    <UpdateTask />
-                </PrivateRoute>
-            },
-            {
-                path: '/task-details/:id',
-                element: <PrivateRoute>
-                    <TaskDetails />
-                </PrivateRoute>,
-                loader: ({params}) => fetch(`https://server-side-a10-blue.vercel.app/freelance/${params.id}`)
-            }
-        ]
-    },
-    {
+  {
+    path: "/",
+    Component: MainLayout,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/add-task",
+        element: (
+          <PrivateRoute>
+            <AddTask />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/browse-task",
+        loader: () =>
+          fetch("https://b11a10-server-side-gaziraihan1.vercel.app/freelance"),
+        element: <BrowseTask />,
+      },
+      {
+        path: "/my-posted-task",
+        element: (
+          <PrivateRoute>
+            <MyPostedTask />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-task/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://b11a10-server-side-gaziraihan1.vercel.app/freelance/${params.id}`
+          ),
+        element: (
+          <PrivateRoute>
+            <UpdateTask />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/task-details/:id",
+        element: (
+          <PrivateRoute>
+            <TaskDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://b11a10-server-side-gaziraihan1.vercel.app/freelance/${params.id}`
+          ),
+      },
+    ],
+  },
+  {
     path: "/auth",
     Component: AuthLayout,
     children: [
@@ -66,11 +80,11 @@ export const router = createBrowserRouter([
       {
         path: "/auth/login",
         Component: Login,
-      }
+      },
     ],
   },
   {
     path: "*",
-    Component: ErrorPage
-  }
-])
+    Component: ErrorPage,
+  },
+]);

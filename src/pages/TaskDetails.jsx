@@ -13,7 +13,9 @@ const TaskDetails = () => {
   const [totalBids, setTotalBids] = useState(0);
 
   useEffect(() => {
-    fetch(`https://server-side-a10-blue.vercel.app/bidscount/${data._id}`)
+    fetch(
+      `https://b11a10-server-side-gaziraihan1.vercel.app/bidscount/${data._id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setTotalBids(data.bidsCount || 0);
@@ -21,7 +23,7 @@ const TaskDetails = () => {
   }, [data._id]);
 
   const handleBidsCount = (taskId) => {
-    fetch("https://server-side-a10-blue.vercel.app/bidscount", {
+    fetch("https://b11a10-server-side-gaziraihan1.vercel.app/bidscount", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +34,9 @@ const TaskDetails = () => {
       .then(() => {
         toast.success("Bid counted");
 
-        fetch(`https://server-side-a10-blue.vercel.app/bidscount/${taskId}`)
+        fetch(
+          `https://b11a10-server-side-gaziraihan1.vercel.app/bidscount/${taskId}`
+        )
           .then((res) => res.json())
           .then((data) => {
             setTotalBids(data.bidsCount || 0);

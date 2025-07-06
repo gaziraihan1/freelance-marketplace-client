@@ -18,7 +18,7 @@ const MyPostedTask = () => {
   useEffect(() => {
     if (user?.email) {
       fetch(
-        `https://server-side-a10-blue.vercel.app/freelance?userEmail=${user.email}`
+        `https://b11a10-server-side-gaziraihan1.vercel.app/freelance?userEmail=${user.email}`
       )
         .then((res) => res.json())
         .then((data) => setPostedTask(data));
@@ -27,7 +27,7 @@ const MyPostedTask = () => {
   }, [user]);
 
   const handleBidShow = (id) => {
-    fetch(`https://server-side-a10-blue.vercel.app/bidscount/${id}`)
+    fetch(`https://b11a10-server-side-gaziraihan1.vercel.app/bidscount/${id}`)
       .then((res) => res.json())
       .then((data) => {
         const count = data?.bidsCount || 0;
@@ -46,9 +46,12 @@ const MyPostedTask = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://server-side-a10-blue.vercel.app/freelance/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://b11a10-server-side-gaziraihan1.vercel.app/freelance/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
@@ -69,7 +72,9 @@ const MyPostedTask = () => {
   };
   return (
     <div className="max-w-3xl mx-auto mt-2 md:mt-8 lg:mt-12 bg-gray-50 rounded">
-      {loading ? <Loading />: postedTask.length < 0 ? (
+      {loading ? (
+        <Loading />
+      ) : postedTask.length < 0 ? (
         <div className="min-h-[70vh] flex justify-center items-center text-gray-800 rounded">
           <div className="text-center">
             <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-gray-800">

@@ -26,13 +26,16 @@ const UpdateTask = () => {
       description,
     };
 
-    fetch(`https://server-side-a10-blue.vercel.app/freelance/${data._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedData),
-    })
+    fetch(
+      `https://b11a10-server-side-gaziraihan1.vercel.app/freelance/${data._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
@@ -88,9 +91,12 @@ const UpdateTask = () => {
             <DatePicker
               value={deadline}
               selected={deadline}
-              onChange={(date) => setDeadline(date
-                // .toLocaleDateString("en-CA")
-              )}
+              onChange={(date) =>
+                setDeadline(
+                  date
+                  // .toLocaleDateString("en-CA")
+                )
+              }
               className="input w-full"
               placeholderText="Select a date"
               dateFormat="yyyy-MM-dd"

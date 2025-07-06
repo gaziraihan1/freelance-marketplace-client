@@ -20,12 +20,10 @@ const AddTask = () => {
     const data = Object.fromEntries(formData.entries());
 
     data.deadline = selectedDate
-      ? new Date(selectedDate)
-      .toISOString().split("T")[0]
+      ? new Date(selectedDate).toISOString().split("T")[0]
       : null;
 
-
-    fetch("https://server-side-a10-blue.vercel.app/freelance", {
+    fetch("https://b11a10-server-side-gaziraihan1.vercel.app/freelance", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -42,7 +40,10 @@ const AddTask = () => {
 
   return (
     <div className="min-h-[90vh] flex justify-center items-center">
-      <form className="w-full bg-gray-50 px-2 py-4 lg:px-4 lg:py-6 rounded" onSubmit={handleAddTask}>
+      <form
+        className="w-full bg-gray-50 px-2 py-4 lg:px-4 lg:py-6 rounded"
+        onSubmit={handleAddTask}
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
             <label className="label">Task Title</label>
@@ -83,7 +84,8 @@ const AddTask = () => {
             <DatePicker
               selected={selectedDate}
               onChange={(date) =>
-                setSelectedDate(date
+                setSelectedDate(
+                  date
                   // .toLocaleDateString("en-CA")
                 )
               }
